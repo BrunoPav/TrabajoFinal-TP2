@@ -1,29 +1,34 @@
-import DaoFactory from '../models/dao.factory.js';
+import DaoFactory from '../models/DAO/dao.factory.js';
 
-const factoryModel = await DaoFactory('usuarios');
+const factoryModel = await DaoFactory.crear('usuariosMongo');
 
-const getUsuario = async () =>{
-    return await factoryModel.get()
+const getUsuarioService = async () =>{
+    return await factoryModel.getAllUsuariosMongo()
 }
 
-const crearService = async (usuario) => {
-    const usuario = await factoryModel.crear();
-    return usuario;
+const postUsuarioService = async (usuario) => {
+    const nuevoUsuario = await factoryModel.postUsuarioMongo(usuario);
+    return nuevoUsuario;
 }
 
-const actualizarService = async (id, datosActualizados) => {
-    return await factoryModel.actualizar(id, datosActualizados);
+const putUsuarioService = async (id, usuario) => {
+    return await factoryModel.putUsuarioMongo(id, usuario);
 }
 
-const eliminarService = async (id) => {
-    return await factoryModel.eliminar(id);
+const patchUsuarioService = async (id, datosActualizados) => {
+    return await factoryModel.patchUsuarioMongo(id, datosActualizados);
+}
+
+const deleteUsuarioService = async (id) => {
+    return await factoryModel.deleteUsuarioMongo(id);
 }
 
 export default{
-    crearService,
-    getUsuario,
-    actualizarService,
-    eliminarService
+    postUsuarioService,
+    getUsuarioService,
+    putUsuarioService,
+    patchUsuarioService,
+    deleteUsuarioService
 }
 
 

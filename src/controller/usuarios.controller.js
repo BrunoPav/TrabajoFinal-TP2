@@ -1,32 +1,40 @@
 import usuarioService from '../services/usuarios.service.js';
 
 const getUsuariosController = async (req,res) => {
-    const usuario = await usuarioService.getUsuario()
+    const usuario = await usuarioService.getUsuarioService()
     res.send(usuario)
 }
 
-const crearUsuarioController = async (req, res) => {
+const postUsuarioController = async (req, res) => {
     const nuevoUsuario = req.body;
-    const usuarioCreado = await usuarioService.crearService(nuevoUsuario);
+    const usuarioCreado = await usuarioService.postUsuarioService(nuevoUsuario);
     res.send(usuarioCreado);
 }
 
-const actualizarUsuarioController = async (req, res) => {
+const putUsuarioController = async (req, res) => {
     const id = req.params.id;
-    const datosActualizados = req.body;
-    const usuarioActualizado = await usuarioService.actualizarService(id, datosActualizados);
+    const usuario = req.body;
+    const usuarioActualizado = await usuarioService.putUsuarioService(id, usuario);
     res.send(usuarioActualizado);
 }
 
-const eliminarUsuarioController = async (req, res) => {
+const patchUsuarioController = async (req, res) => {
     const id = req.params.id;
-    const usuarioEliminado = await usuarioService.eliminarService(id);
+    const datosActualizados = req.body;
+    const usuarioActualizado = await usuarioService.patchUsuarioService(id, datosActualizados);
+    res.send(usuarioActualizado);
+}
+
+const deleteUsuarioController = async (req, res) => {
+    const id = req.params.id;
+    const usuarioEliminado = await usuarioService.deleteUsuarioService(id);
     res.send(usuarioEliminado);
 }
 
 export default {
     getUsuariosController,
-    crearUsuarioController,
-    actualizarUsuarioController,
-    eliminarUsuarioController
+    postUsuarioController,
+    putUsuarioController,
+    patchUsuarioController,
+    deleteUsuarioController
 }
