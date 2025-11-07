@@ -20,8 +20,10 @@ class EventosMongoClases {
         return evento;
     }
 
-    async putEventoMongo(id, evento) {
-        const data = await MongoBDConnection.db.collection(this.collection).replaceOne({_id: ObjectId.createFromHexString(id) }, { $set: evento });
+    async putEventoMongo(id, evento) {    
+        if (evento._id) delete evento._id;
+        evento._id = ObjectId.createFromHexString(id);
+        const data = await MongoBDConnection.db.collection(this.collection).replaceOne({ _id: ObjectId.createFromHexString(id) }, evento);
         return data;
     }
 
