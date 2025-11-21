@@ -1,6 +1,7 @@
 import DaoFactory from '../models/DAO/dao.factory.js';
 
-const factoryModel = await DaoFactory.crear('eventosMongo');
+const factoryModel = await DaoFactory.create('eventosMongo');
+//VA: const factoryModel = await DaoFactory.create('process.env.PERSISTENCE');
 
 const getEventoService = async () =>{
     return await factoryModel.getAllEventosMongo()

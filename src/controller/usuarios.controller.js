@@ -1,4 +1,5 @@
 import usuarioService from '../services/usuarios.service.js';
+// VA: import authMiddleware from '../middlewares/jwt.middleware.js';
 
 const getUsuariosController = async (req,res) => {
     const usuario = await usuarioService.getUsuarioService()

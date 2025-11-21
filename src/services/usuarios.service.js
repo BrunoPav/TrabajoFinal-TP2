@@ -1,6 +1,7 @@
 import DaoFactory from '../models/DAO/dao.factory.js';
 
-const factoryModel = await DaoFactory.crear('usuariosMongo');
+const factoryModel = await DaoFactory.create('usuariosMongo');
+// VA:const factoryModel = await DaoFactory.create('process.env.PERSISTENCE');
 
 const getUsuarioService = async () =>{
     return await factoryModel.getAllUsuariosMongo()
