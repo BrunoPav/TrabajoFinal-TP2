@@ -3,15 +3,17 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/Usuarios', usuarioController.getUsuariosController);
+router.get('/usuarios', usuarioController.getUsuariosController);
 
-router.post('/Usuarios', usuarioController.postUsuarioController);
+router.get('/usuarios/:id', usuarioController.getUsuariosByIdController);
 
-router.put('/Usuarios/:id', usuarioController.putUsuarioController);
+router.post('/usuarios', usuarioController.postUsuarioController);
 
-router.patch('/Usuarios/:id', usuarioController.patchUsuarioController);
+router.put('/usuarios/:id', usuarioController.putUsuarioController);
 
-router.delete('/Usuarios/:id', usuarioController.deleteUsuarioController);
+router.patch('/usuarios/:id', usuarioController.patchUsuarioController);
+
+router.delete('/usuarios/:id', usuarioController.deleteUsuarioController);
 
 
 export default router;

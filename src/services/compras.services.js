@@ -21,6 +21,11 @@ class ComprasService {
         return compras;
     }
 
+    getCompraByIdService = async (id) => {
+        const compra = await this.model.getCompraByIdMongo(id);
+        return compra;
+    }
+
     
     putCompraService = async (id, compra) => {
         const compraActualizada = await this.model.putComprasMongo(id, compra);

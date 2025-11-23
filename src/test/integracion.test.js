@@ -1,52 +1,56 @@
 import { expect } from 'chai';
 import supertest from 'supertest';
-import { it } from 'test';
 
 const url = supertest('http://localhost:8080');
 
 
-describe(Pruebasdeintegración, () => {
+const nuevaCompra = {
+    evento: "Concierto Test",
+    cantidad: 1,
+    comprador: "Test User",
+    email: "test@example.com",
+    precio: 100.00
+};
 
-    it("GET /compras ->", async () => { 
+describe("Pruebas de integración", () => {
+
+    it("GET /compras -> Debería obtener todas las compras", async () => { 
         const respuesta = await url.get('/api/compras');
         expect(respuesta.status).to.equal(200);
     });
-},
 
-    it("POST /compras ->", async () => { 
-
+    it("POST /compras -> Debería crear una nueva compra exitosamente", async () => {
         const respuesta = await url.post('/api/compras').send(nuevaCompra);
         expect(respuesta.status).to.equal(200);
         expect(respuesta.body).to.have.property('status').that.equals('success');
         expect(respuesta.body).to.have.property('data');
-        expect(respuesta.body.data).to.include(nuevaCompra);        
+    });
 
-    }),
+    it("POST /compras -> Debería fallar sin campos requeridos", async () => {
+        const compraSinDatos = {
+            evento: "Test"
 
-   
-    
-    it ("POST /compras ->", async () => {
-        const respuesta = await url.post('/api/compras').send(nuevaCompra);
-        expect(respuesta.status).to.equal(200);
-        expect(respuesta.body).to.have.property('status').that.equals('success');
-        expect(respuesta.body).to.have.property('data');
-        expect(respuesta.body.data).to.include(nuevaCompra);
-    }),
+        };
+        
+        const respuesta = await url.post('/api/compras').send(compraSinDatos);
+        expect(respuesta.status).to.equal(400);
+        expect(respuesta.body).to.have.property('status').that.equals('error');
+    });
 
-    it ("PUT /compras/:id ->", async () => {
+    it("PATCH /compras/:id -> Debería actualizar una compra", async () => {
+
+        const respuestaCreate = await url.post('/api/compras').send(nuevaCompra);
+        const compraId = respuestaCreate.body.data.dbResult.insertedId;
+
+        
         const compraActualizada = {
-            usuarioId: "usuario123",
-            eventoId: "evento456",
-            cantidad: 3,
-            total: 150.00,
-            fecha: new Date().toISOString()
-        }
-    }),
-
-    it (delete "/compras/:id ->", async () => {
-        const compraId = "64b7f8f2c9e77a6f4d3e8b9a";            
-        const respuesta = await url.delete(`/api/compras/${compraId}`);
+            cantidad: 2,
+            precio: 200.00
+        };
+        
+        const respuesta = await url.patch(`/api/compras/${compraId}`).send(compraActualizada);
         expect(respuesta.status).to.equal(200);
-        expect(respuesta.body).to.have.property('status').that.equals('success');           
-    })
-);
+        expect(respuesta.body).to.have.property('modifiedCount').that.equals(1);
+    });
+
+});

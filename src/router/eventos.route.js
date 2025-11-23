@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get('/Eventos', eventoController.getEventosController);
 
+router.get('/Eventos/:id', eventoController.getEventosByIdController);
+
 router.post('/Eventos', eventoController.postEventosController);
 
 router.put('/Eventos/:id', eventoController.putEventosController);

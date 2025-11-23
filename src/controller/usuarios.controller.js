@@ -6,6 +6,12 @@ const getUsuariosController = async (req,res) => {
     res.send(usuario)
 }
 
+const getUsuariosByIdController = async (req, res) => {
+    const id = req.params.id;
+    const usuario = await usuarioService.getUsuarioByIdService(id);
+    res.send(usuario);
+}
+
 const postUsuarioController = async (req, res) => {
     const nuevoUsuario = req.body;
     const usuarioCreado = await usuarioService.postUsuarioService(nuevoUsuario);
@@ -34,6 +40,7 @@ const deleteUsuarioController = async (req, res) => {
 
 export default {
     getUsuariosController,
+    getUsuariosByIdController,
     postUsuarioController,
     putUsuarioController,
     patchUsuarioController,

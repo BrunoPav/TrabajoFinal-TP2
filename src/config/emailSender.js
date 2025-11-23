@@ -6,8 +6,8 @@ async function enviarNotificacionExitosa(datos) {
     const {...datosCompra } = datos.body;
 
     const mailOptions = {
-        from: 'valonso@gmail.com', // Remitente
-        to: 'valonso2609@gmail.com', 
+        from: 'tu-email@gmail.com', 
+        to: datos.destinatario, 
         subject: 'Notificación de compra exitosa',
         html: `
             <h1>Operación de compra se realizo con éxito</h1>

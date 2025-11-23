@@ -8,18 +8,22 @@
     "start": "node .",
     "watch": "node --watch .",
     "test": "mocha ./src/test/**/*test.js"
-    
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chai": "^6.2.1",
+    "axios": "^1.13.2",
     "express": "^5.1.0",
     "mocka": "^0.0.1",
     "mongodb": "^7.0.0",
     "nodemailer": "^7.0.10",
     "super": "^0.2.3",
     "test": "^3.3.0"
+  },
+  "devDependencies": {
+    "chai": "^6.2.1",
+    "mocha": "^11.7.5",
+    "supertest": "^7.1.4"
   }
 }

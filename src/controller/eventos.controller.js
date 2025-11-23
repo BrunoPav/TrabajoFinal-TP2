@@ -5,6 +5,12 @@ const getEventosController = async (req,res) => {
     res.send(evento)
 }
 
+const getEventosByIdController = async (req, res) => {
+    const id = req.params.id;
+    const evento = await eventoService.getEventoByIdService(id);
+    res.send(evento);
+}
+
 const postEventosController = async (req, res) => {
     const nuevoEvento = req.body;
     const eventoCreado = await eventoService.postEventoService(nuevoEvento);
@@ -33,6 +39,7 @@ const deleteEventosController = async (req, res) => {
 
 export default {
     getEventosController,
+    getEventosByIdController,
     postEventosController,
     putEventosController,
     patchEventosController,
