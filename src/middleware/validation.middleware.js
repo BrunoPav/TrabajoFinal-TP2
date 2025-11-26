@@ -1,7 +1,7 @@
 export const validateNewCompra = (req, res, next) => {
-    const { evento, cantidad, comprador, fecha, email, precio } = req.body;
+    const { evento, cantidad, comprador, email, precio } = req.body;
 
-    // 1. Validar campos requeridos
+    
     if (!evento || !cantidad || !comprador || !email || !precio) {
         return res.status(400).json({ 
             status: 'error', 
@@ -9,7 +9,7 @@ export const validateNewCompra = (req, res, next) => {
         });
     }
 
-    // 2. Validar tipos de datos (Ejemplos)
+    
     if (typeof cantidad !== 'number' || cantidad <= 0) {
         return res.status(400).json({ 
             status: 'error', 

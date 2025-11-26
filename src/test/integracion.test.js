@@ -14,6 +14,26 @@ const nuevaCompra = {
 
 describe("Pruebas de integración", () => {
 
+    it("POST /usuarios/login -> Debería autenticar un usuario y devolver un token", async () => {
+        const credentials = {
+            user: "Miguelito",
+            password: "12345"
+        };
+
+        const respuesta = await url.post('/api/usuarios/login').set(credentials);
+        expect(respuesta.status).to.equals(200);
+    });
+
+    it("POST /usuarios/login -> Debería rechazar por falta de credenciales", async () => {
+        const credentials = {
+            user: "",
+            password: "",
+        };
+
+        const respuesta = await url.post('/api/usuarios/login').set(credentials);
+        expect(respuesta.status).to.equals(400);
+    });
+
     it("GET /compras -> Debería obtener todas las compras", async () => { 
         const respuesta = await url.get('/api/compras');
         expect(respuesta.status).to.equal(200);

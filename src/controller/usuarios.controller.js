@@ -1,9 +1,20 @@
 import usuarioService from '../services/usuarios.service.js';
-// VA: import authMiddleware from '../middlewares/jwt.middleware.js';
+import authMiddleware from '../middleware/jwt.middleware.js';
 
 const getUsuariosController = async (req,res) => {
     const usuario = await usuarioService.getUsuarioService()
     res.send(usuario)
+}
+
+const loginUsuarioController = async (req, res) => {
+    const data = req.headers;
+    console.log(data);
+    if (data && data.user && data.password) {
+        const tkn = await authMiddleware.generarToken(data);
+        return res.status(200).send({ status: 'success', token: tkn });
+    } else {
+        return res.status(400).send({ status: 'error', message: 'Faltan credenciales' });
+    }
 }
 
 const getUsuariosByIdController = async (req, res) => {
@@ -39,6 +50,7 @@ const deleteUsuarioController = async (req, res) => {
 }
 
 export default {
+    loginUsuarioController,
     getUsuariosController,
     getUsuariosByIdController,
     postUsuarioController,

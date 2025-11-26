@@ -7,6 +7,10 @@ const getEventoService = async () =>{
     return await factoryModel.getAllEventosMongo()
 }
 
+const getEventoByIdService = async (id) => {
+    return await factoryModel.getEventoByIdMongo(id);
+}
+
 const postEventoService = async (evento) => {
     const nuevoEvento = await factoryModel.postEventoMongo(evento);
     return nuevoEvento;
@@ -29,5 +33,6 @@ export default{
     getEventoService,
     putEventoService,
     patchEventoService,
-    deleteEventoService
+    deleteEventoService,
+    getEventoByIdService
 }

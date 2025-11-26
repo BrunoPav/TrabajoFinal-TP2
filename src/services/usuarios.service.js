@@ -7,6 +7,10 @@ const getUsuarioService = async () =>{
     return await factoryModel.getAllUsuariosMongo()
 }
 
+const getUsuarioByIdService = async (id) => {
+    return await factoryModel.getUsuarioByIdMongo(id);
+}
+
 const postUsuarioService = async (usuario) => {
     const nuevoUsuario = await factoryModel.postUsuarioMongo(usuario);
     return nuevoUsuario;
@@ -29,7 +33,8 @@ export default{
     getUsuarioService,
     putUsuarioService,
     patchUsuarioService,
-    deleteUsuarioService
+    deleteUsuarioService,
+    getUsuarioByIdService
 }
 
 

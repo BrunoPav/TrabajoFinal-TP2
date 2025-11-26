@@ -7,6 +7,8 @@ router.get('/usuarios', usuarioController.getUsuariosController);
 
 router.get('/usuarios/:id', usuarioController.getUsuariosByIdController);
 
+router.post('/usuarios/login', usuarioController.loginUsuarioController);
+
 router.post('/usuarios', usuarioController.postUsuarioController);
 
 router.put('/usuarios/:id', usuarioController.putUsuarioController);
