@@ -102,7 +102,11 @@ npm run test
  - **Prefijo de la API**: todas las rutas están montadas bajo el prefijo `/api` (p. ej. `GET /api/Eventos`).
  - **Autenticación / JWT**: la generación de tokens se realiza en `src/middleware/jwt.middleware.js`.
         - El endpoint `/api/usuarios/login` espera credenciales en el body (`user` y `password`) y devuelve un token JWT con expiración corta (2 minutos).
- - **Validación de datos**: la ruta `POST /api/compras` utiliza el middleware `validateNewCompra` en `src/middleware/validation.middleware.js` 
-        para asegurar que los campos obligatorios existen y tengan formato correcto.
+ - **Validación de datos**: las rutas:
+ - `POST /api/compras`
+ - `PATCH /api/compras/:id`
+ - `POST /api/Usuarios`
+ - `PATCH /api/Usuarios/:id`
+        utiliza el middleware `authMiddleware` en `src/middleware/validation.middleware.js` para asegurar que los campos obligatorios existen y tengan formato correcto.
 
 

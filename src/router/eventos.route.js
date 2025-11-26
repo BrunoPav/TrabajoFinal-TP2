@@ -1,4 +1,5 @@
 import eventoController from '../controller/eventos.controller.js';
+import authMiddleware from '../middleware/validation.middleware.js';
 import express from 'express';
 
 const router = express.Router();

@@ -12,7 +12,7 @@ class EventosMongoClases {
     }
 
     async getEventoByIdMongo(id) {
-        return await MongoBDConnection.db.collection(this.collection).findOne({ _id: id });
+        return await MongoBDConnection.db.collection(this.collection).findOne({ _id: ObjectId.createFromHexString(id) });
     }
 
     async postEventoMongo(evento) {
